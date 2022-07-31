@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-firebase-test',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FirebaseTestComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private firestore: AngularFirestore,
+  ) { 
+    const huso = firestore.collection('test').valueChanges()
+    huso.subscribe(console.log)
+  }
+
+  huso: string = ''
 
   ngOnInit(): void {
   }
